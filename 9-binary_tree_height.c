@@ -6,23 +6,15 @@
  *
  * Return: If tree is NULL, your function must return 0, else return height.
  */
-
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return (0);
-	else
+	if (tree)
 	{
-		size_t ldepth = binary_tree_height(tree->left);
-		size_t rdepth = binary_tree_height(tree->right);
+		size_t l = 0, r = 0;
 
-
-
-		if (ldepth > rdepth)
-		{
-			return (ldepth + 1);
-		}
-		else
-			return (rdepth + 1);
+		l = tree->left ? 1 + binary_tree_height(tree->left) : 0;
+		r = tree->right ? 1 + binary_tree_height(tree->right) : 0;
+		return ((l > r) ? l : r);
 	}
+	return (0);
 }
